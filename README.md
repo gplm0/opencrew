@@ -1,4 +1,4 @@
-# 🤖 Jarvis AI Assistant
+# 🤖 Crew AI Agents 
 
 A sophisticated personal AI assistant with engineering expertise (Waza Skills) powered by Qwen LLM.
 
