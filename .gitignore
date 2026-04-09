@@ -37,3 +37,4 @@ server.log
 
 # Node
 node_modules/
+.qwen/  
