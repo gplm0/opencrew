@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv\\scripts\\python.exe *)",
+      "Bash(copy *)",
+      "Bash(docker *)",
+      "Bash(docker-compose *)",
+      "Bash(ollama *)",
+      "Bash(curl *)",
+      "Bash(netstat *)",
+      "Bash(findstr *)",
+      "Bash(timeout *)",
+      "Bash(tasklist)",
+      "Bash(set *)",
+      "Bash(tee *)",
+      "Bash(type *)",
+      "Bash(echo.)",
+      "Bash(taskkill *)"
+    ]
+  },
+  "$version": 3
+}

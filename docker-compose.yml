@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # Ollama for local LLM (optional)
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    environment:
+      - OLLAMA_MODELS=/root/.ollama/models
+    command: ollama serve
+    profiles:
+      - local
+
+  # Jarvis API
+  jarvis:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - QWEN_API_TYPE=${QWEN_API_TYPE:-dashscope}
+      - QWEN_API_KEY=${QWEN_API_KEY}
+      - QWEN_MODEL=${QWEN_MODEL:-qwen-plus}
+      - QWEN_BASE_URL=${QWEN_BASE_URL:-https://dashscope.aliyuncs.com/compatible-mode/v1}
+      - OLLAMA_BASE_URL=http://ollama:11434/v1
+      - OLLAMA_MODEL=qwen:7b
+      - DATABASE_URL=sqlite+aiosqlite:///./jarvis.db
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-change-me-in-production}
+      - NODE_ENV=production
+    volumes:
+      - jarvis-data:/app/data
+    restart: unless-stopped
+    depends_on:
+      - ollama
+    profiles:
+      - local
+
+  # Jarvis with cloud Qwen API
+  jarvis-cloud:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - QWEN_API_TYPE=dashscope
+      - QWEN_API_KEY=${QWEN_API_KEY}
+      - QWEN_MODEL=qwen-plus
+      - DATABASE_URL=sqlite+aiosqlite:///./jarvis.db
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-change-me-in-production}
+      - NODE_ENV=production
+    volumes:
+      - jarvis-data:/app/data
+    restart: unless-stopped
+    profiles:
+      - cloud
+
+volumes:
+  ollama-data:
+  jarvis-data:
