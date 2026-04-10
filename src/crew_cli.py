@@ -312,16 +312,5 @@ def stats():
     asyncio.run(show_stats())
 
 
-@cli.command()
-@click.option("--port", default=3000, help="Port for API server")
-def serve(port: int):
-    """Start the OpenCrew API server (multi-agent mode)"""
-    import uvicorn
-    from src.api.server import app
-
-    console.print(Panel(f"🚀 Starting OpenCrew API Server on port {port}...", style="bold green"))
-    uvicorn.run(app, host="0.0.0.0", port=port)
-
-
 if __name__ == "__main__":
     cli()

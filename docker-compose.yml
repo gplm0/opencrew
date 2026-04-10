@@ -14,11 +14,9 @@ services:
     profiles:
       - local
 
-  # Jarvis API
-  jarvis:
+  # OpenCrew - Multi-agent tasks
+  opencrew:
     build: .
-    ports:
-      - "3000:3000"
     environment:
       - QWEN_API_TYPE=${QWEN_API_TYPE:-dashscope}
       - QWEN_API_KEY=${QWEN_API_KEY}
@@ -27,34 +25,30 @@ services:
       - OLLAMA_BASE_URL=http://ollama:11434/v1
       - OLLAMA_MODEL=qwen:7b
       - DATABASE_URL=sqlite+aiosqlite:///./jarvis.db
-      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-change-me-in-production}
       - NODE_ENV=production
     volumes:
-      - jarvis-data:/app/data
+      - opencrew-data:/app/data
     restart: unless-stopped
     depends_on:
       - ollama
     profiles:
       - local
 
-  # Jarvis with cloud Qwen API
-  jarvis-cloud:
+  # OpenCrew with cloud Qwen API
+  opencrew-cloud:
     build: .
-    ports:
-      - "3000:3000"
     environment:
       - QWEN_API_TYPE=dashscope
       - QWEN_API_KEY=${QWEN_API_KEY}
       - QWEN_MODEL=qwen-plus
       - DATABASE_URL=sqlite+aiosqlite:///./jarvis.db
-      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-change-me-in-production}
       - NODE_ENV=production
     volumes:
-      - jarvis-data:/app/data
+      - opencrew-data:/app/data
     restart: unless-stopped
     profiles:
       - cloud
 
 volumes:
   ollama-data:
-  jarvis-data:
+  opencrew-data:

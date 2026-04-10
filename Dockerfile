@@ -10,10 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Create necessary directories
-RUN mkdir -p /app/data /app/static
+RUN mkdir -p /app/data
 
-# Expose port
-EXPOSE 3000
-
-# Run the application
-CMD ["python", "-m", "src.cli", "serve", "--host", "0.0.0.0", "--port", "3000"]
+# Default command - run OpenCrew tasks
+CMD ["python", "-m", "src.crew_cli", "--help"]

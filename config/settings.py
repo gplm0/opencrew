@@ -24,20 +24,10 @@ class Settings(BaseSettings):
     WAZA_READ_ENABLED: bool = True
     WAZA_CHECK_ENABLED: bool = True
     WAZA_HEALTH_ENABLED: bool = True
-    
-    # Server
-    PORT: int = 3000
-    HOST: str = "0.0.0.0"
-    NODE_ENV: str = "development"
-    
+
     # Database
     DATABASE_URL: str = "sqlite+aiosqlite:///./jarvis.db"
-    
-    # JWT Authentication
-    JWT_SECRET_KEY: str = "your-secret-key-change-in-production"
-    JWT_ALGORITHM: str = "HS256"
-    JWT_EXPIRATION_HOURS: int = 24
-    
+
     # LLM Parameters
     TEMPERATURE: float = 0.7
     TOP_P: float = 0.9
