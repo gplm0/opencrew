@@ -1,6 +1,6 @@
 # 🤖 OpenCrew - Multi-Agent AI Crew
 
-A sophisticated multi-agent AI orchestration system that automatically decomposes complex tasks and executes them using specialist agents powered by Qwen LLM.
+A sophisticated multi-agent AI orchestration system that automatically decomposes complex tasks and executes them using specialist agents powered by Ollama LLM.
 
 **Two Modes:**
 - **Single-Agent Mode** - Direct chat with one AI assistant (Jarvis)
