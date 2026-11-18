@@ -432,11 +432,3 @@ curl -X POST http://localhost:3000/skill/check ^
 2. Create your feature branch
 3. Add your changes
 4. Submit a pull request
-
-## 📄 License
-
-MIT License - feel free to use for personal or commercial projects.
-
----
-
-**Built with ❤️ for personal productivity and engineering excellence**
